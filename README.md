@@ -15,6 +15,7 @@ npm test           # engine, branching, persistence and contrast tests
 npm run typecheck
 npm run build
 node scripts/build-artifact.mjs   # single-file HTML for the hosted prototype
+npx vite-node scripts/build-mascot.ts   # mascot poses, animated SVGs, 12 fps frames, previews
 ```
 
 Use the **Prototype controls** panel at the bottom of the page to switch fixture scenarios: payroll unavailable or updated (conflict), draft-save failure, final-save failure, upload failure, estimate states (unavailable, processing, missing inputs, error, labelled demo), latency, and "simulate refresh" for resume.
@@ -35,7 +36,8 @@ Uploads: a file named like `synthetic-paystub.pdf` simulates a successful extrac
 | Fixture services | `src/checkup/adapters/fixtures.ts` | **Fixture**: never ship |
 | Flow controller hook | `src/checkup/useCheckup.ts` | Implemented |
 | Renderers and screens | `src/checkup/components/` | Implemented |
-| Mascot (7 poses), wordmark, icons | `src/brand/` | Redrawn from the tillee.io homepage; originals still needed |
+| Mascot rig (8 poses, 9 motions) | `src/brand/mascot/rig.ts` → `assets/mascot/` | Built with the svg-mascot-creator skill; originals still needed |
+| Wordmark, icons | `src/brand/` | Approximations of tillee.io |
 | Tokens and styles (light + dark) | `src/styles.css` | Sampled from the homepage, adjusted for WCAG AA |
 | Style showcase | `src/pages/StyleShowcase.tsx` (`#style`) | Implemented |
 

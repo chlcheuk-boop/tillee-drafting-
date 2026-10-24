@@ -1,25 +1,33 @@
 # Mascot spec
 
-**Asset status: redraw, pending the original files.** The character comes from the tillee.io homepage: a round, fuzzy purple creature with big round glasses, a red bow tie, small arms and feet, often waving beside a quoted line. `src/brand/Mascot.tsx` is a vector redraw made from a low-resolution homepage screenshot. Its proportions are approximate. Swap in the original artwork when available, and keep the `pose` API.
+**Asset status: streamlined rig (built with the svg-mascot-creator skill), pending the original files.** The character is the tillee.io homepage guide: a round purple creature with big round glasses, a red bow tie, small arms and feet. It's rebuilt as a fixed rig with swappable limbs in `src/brand/mascot/rig.ts`. That one source drives the React component, the exported files in `assets/mascot/`, and the motion frames. When the original artwork arrives, redraw it in the rig (same anchors and groups), and every pose and animation updates.
+
+## What changed from the first redraw
+
+- **Smooth silhouette.** The fuzzy edge and gradient-like highlight are gone; the body is a flat circle with one right-side shade at 0.55 opacity, plus a ground shadow.
+- **Consistent construction.** Limbs are double-stroked tubes with hand circles, and every pose shares the same body, glasses and bow tie byte for byte (checked by `rig.test.ts`).
+- **Motion-ready.** Named groups (`mascot`, `arm-near`, `arm-far`, `leg-*`, `head`, `eyes`, `fx`) rotate around fixed anchors, so poses animate without redrawing.
+
+See `assets/mascot/README.md` for the rig spec, motions and frame exports.
 
 ## Drawing grammar
 
-- **Body:** a fuzzy circle (`--mascot-body`) with a soft top-left highlight and darker feet (`--mascot-shade`).
-- **Glasses:** two white lenses with plum rims (`--mascot-rim`) and a bridge. Expressions live in the pupils, the brows above the rims, the mouth and the arms. The body never changes shape.
-- **Bow tie:** `--mascot-bow` with a darker knot. It's the character's one warm accent; nothing else in the UI uses that red.
-- **viewBox:** 140×140.
+- **Body:** a smooth circle (`#7A52E6`) with a right-side shade crescent (`#5A36C4`, 0.55 opacity) and stub legs.
+- **Glasses:** white lenses with plum rims (`#2A2340`) and a bridge. Expressions come from the pupils, brows, mouth and arms.
+- **Accent:** red `#E0303A` appears only on the bow tie and FX marks (wave arcs, sparks, thought dots).
+- **viewBox:** `-12 0 264 240`.
 
 ## Poses
 
-| Pose | Use | Never |
+| App pose (rig pose) | Use | Never |
 |---|---|---|
-| `neutral` | Desktop progress column beside questions | Speech bubble repeating the question |
-| `greeting` | Welcome (one wave, about 1.6s, once) | Looping |
-| `thinking` | Real processing only | Pretending to calculate or review |
-| `explaining` | "Why we ask" with a quoted line, as on the homepage | Wit before the reason |
-| `reassuring` | Saved and completion; calm result, including when money may be owed | Celebrating a refund amount |
-| `celebrating` | Section breaks (acknowledging effort) | Results, owed amounts, more withholding |
-| `supportive` | Upload or save failure with retry | Shocked, blaming or laughing |
+| `neutral` (neutral, idle + blink) | Desktop progress column beside questions | Speech bubble repeating the question |
+| `greeting` (waving, wave ×2) | Welcome (one wave, about 1.6s, once) | Looping |
+| `thinking` (thinking, think) | Real processing only | Pretending to calculate or review |
+| `explaining` (pointing, explain) | "Why we ask" with a quoted line, as on the homepage | Wit before the reason |
+| `reassuring` (reassuring, reassure) | Saved and completion; calm result, including when money may be owed | Celebrating a refund amount |
+| `celebrating` (celebrating, celebrate) | Section breaks (acknowledging effort) | Results, owed amounts, more withholding |
+| `supportive` (supportive, support) | Upload or save failure with retry | Shocked, blaming or laughing |
 
 ## Usage
 
@@ -32,6 +40,6 @@
 
 ## Still needed
 
-1. The original mascot and logo files (SVG preferred), to replace the redraw and the font-approximated wordmark.
-2. Illustrator passes on the seven poses in the original style.
-3. Static exports: `tillee-mascot-{pose}.svg` plus @1x/@2x PNGs at 48, 96 and 192px.
+1. The original mascot and logo files (SVG preferred), to reconcile the rig's proportions and replace the font-approximated wordmark.
+2. A motion designer's pass on timing, using `assets/mascot/frames/` and `frames.json` as the source.
+3. Optionally, a Lottie or Rive export built from those frames.

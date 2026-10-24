@@ -1,6 +1,15 @@
 import { MASCOT_MIN_SIZE, MASCOT_POSES, Mascot, Wordmark, type MascotPose } from '../brand/Mascot';
 import { Icon } from '../brand/Icon';
 import { CONTRAST_PAIRS, contrastRatio } from '../brand/contrast';
+import { MOTIONS, REDUCED_MOTION_CSS, buildMascotSvg, motionCss } from '../brand/mascot/rig';
+
+/** Showcase-only: a looping, self-scoped copy of each motion (unique class scope per card). */
+function animatedSvg(name: string) {
+  const m = MOTIONS.find((x) => x.name === name)!;
+  const scope = `.show-${name} `;
+  const css = `${motionCss(m, 'class', scope, 'infinite')}\n${REDUCED_MOTION_CSS('class', scope)}`;
+  return `<div class="show-${name}" style="line-height:0"><style>${css}</style>${buildMascotSvg(m.pose, { hooks: 'class' }).replace('<svg ', '<svg style="width:100%;height:auto;overflow:visible" ')}</div>`;
+}
 
 /**
  * Living showcase for the checkup components and the PROPOSED brand layer,
@@ -49,7 +58,7 @@ export function StyleShowcase() {
       </div>
 
       <section>
-        <h2>Mascot pose sheet (redraw of the homepage character)</h2>
+        <h2>Mascot pose sheet (svg-mascot-creator rig)</h2>
         <div className="pose-grid">
           {MASCOT_POSES.map((p) => (
             <div className="pose-card" key={p}>
@@ -67,6 +76,25 @@ export function StyleShowcase() {
           <span style={{ background: '#2a2340', padding: 8, borderRadius: 12 }}>
             <Mascot size={64} animate={false} />
           </span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Motion (generated from the rig)</h2>
+        <p>
+          Every motion rotates or moves named groups around fixed anchors; no shape is ever morphed. Frame exports at 12 fps and a
+          timing spec live in <code>assets/mascot/frames/</code>.
+        </p>
+        <div className="pose-grid">
+          {MOTIONS.filter((m) => m.name !== 'blink').map((m) => (
+            <div className="pose-card" key={m.name}>
+              <span dangerouslySetInnerHTML={{ __html: animatedSvg(m.name) }} style={{ width: 120, display: 'block' }} />
+              <strong>
+                {m.name} · {m.durationMs} ms{m.loop ? ' · loop' : ''}
+              </strong>
+              <span>{m.use}</span>
+            </div>
+          ))}
         </div>
       </section>
 

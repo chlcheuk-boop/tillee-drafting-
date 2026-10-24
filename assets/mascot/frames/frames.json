@@ -1,0 +1,851 @@
+[
+  {
+    "motion": "idle",
+    "pose": "neutral",
+    "fps": 12,
+    "durationMs": 3200,
+    "loop": true,
+    "use": "Desktop progress column; any resting placement",
+    "frames": [
+      "idle/idle-01.svg",
+      "idle/idle-02.svg",
+      "idle/idle-03.svg",
+      "idle/idle-04.svg",
+      "idle/idle-05.svg",
+      "idle/idle-06.svg",
+      "idle/idle-07.svg",
+      "idle/idle-08.svg",
+      "idle/idle-09.svg",
+      "idle/idle-10.svg",
+      "idle/idle-11.svg",
+      "idle/idle-12.svg",
+      "idle/idle-13.svg",
+      "idle/idle-14.svg",
+      "idle/idle-15.svg",
+      "idle/idle-16.svg",
+      "idle/idle-17.svg",
+      "idle/idle-18.svg",
+      "idle/idle-19.svg",
+      "idle/idle-20.svg",
+      "idle/idle-21.svg",
+      "idle/idle-22.svg",
+      "idle/idle-23.svg",
+      "idle/idle-24.svg",
+      "idle/idle-25.svg",
+      "idle/idle-26.svg",
+      "idle/idle-27.svg",
+      "idle/idle-28.svg",
+      "idle/idle-29.svg",
+      "idle/idle-30.svg",
+      "idle/idle-31.svg",
+      "idle/idle-32.svg",
+      "idle/idle-33.svg",
+      "idle/idle-34.svg",
+      "idle/idle-35.svg",
+      "idle/idle-36.svg",
+      "idle/idle-37.svg",
+      "idle/idle-38.svg"
+    ],
+    "tracks": [
+      {
+        "group": "mascot",
+        "pivot": [
+          120,
+          218
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "ty": 0
+          },
+          {
+            "at": 0.5,
+            "ty": -4
+          },
+          {
+            "at": 1,
+            "ty": 0
+          }
+        ]
+      },
+      {
+        "group": "shadow",
+        "pivot": [
+          120,
+          218
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "sx": 1,
+            "opacity": 0.25
+          },
+          {
+            "at": 0.5,
+            "sx": 0.9,
+            "opacity": 0.16
+          },
+          {
+            "at": 1,
+            "sx": 1,
+            "opacity": 0.25
+          }
+        ]
+      },
+      {
+        "group": "arm-near",
+        "pivot": [
+          184,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.5,
+            "rotate": 3
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      },
+      {
+        "group": "arm-far",
+        "pivot": [
+          56,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.5,
+            "rotate": -3
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "blink",
+    "pose": "neutral",
+    "fps": 12,
+    "durationMs": 5000,
+    "loop": true,
+    "use": "Layered on idle",
+    "frames": [
+      "blink/blink-01.svg",
+      "blink/blink-02.svg",
+      "blink/blink-03.svg",
+      "blink/blink-04.svg",
+      "blink/blink-05.svg",
+      "blink/blink-06.svg",
+      "blink/blink-07.svg",
+      "blink/blink-08.svg",
+      "blink/blink-09.svg",
+      "blink/blink-10.svg",
+      "blink/blink-11.svg",
+      "blink/blink-12.svg",
+      "blink/blink-13.svg",
+      "blink/blink-14.svg",
+      "blink/blink-15.svg",
+      "blink/blink-16.svg",
+      "blink/blink-17.svg",
+      "blink/blink-18.svg",
+      "blink/blink-19.svg",
+      "blink/blink-20.svg",
+      "blink/blink-21.svg",
+      "blink/blink-22.svg",
+      "blink/blink-23.svg",
+      "blink/blink-24.svg",
+      "blink/blink-25.svg",
+      "blink/blink-26.svg",
+      "blink/blink-27.svg",
+      "blink/blink-28.svg",
+      "blink/blink-29.svg",
+      "blink/blink-30.svg",
+      "blink/blink-31.svg",
+      "blink/blink-32.svg",
+      "blink/blink-33.svg",
+      "blink/blink-34.svg",
+      "blink/blink-35.svg",
+      "blink/blink-36.svg",
+      "blink/blink-37.svg",
+      "blink/blink-38.svg",
+      "blink/blink-39.svg",
+      "blink/blink-40.svg",
+      "blink/blink-41.svg",
+      "blink/blink-42.svg",
+      "blink/blink-43.svg",
+      "blink/blink-44.svg",
+      "blink/blink-45.svg",
+      "blink/blink-46.svg",
+      "blink/blink-47.svg",
+      "blink/blink-48.svg",
+      "blink/blink-49.svg",
+      "blink/blink-50.svg",
+      "blink/blink-51.svg",
+      "blink/blink-52.svg",
+      "blink/blink-53.svg",
+      "blink/blink-54.svg",
+      "blink/blink-55.svg",
+      "blink/blink-56.svg",
+      "blink/blink-57.svg",
+      "blink/blink-58.svg",
+      "blink/blink-59.svg",
+      "blink/blink-60.svg"
+    ],
+    "tracks": [
+      {
+        "group": "eyes",
+        "pivot": [
+          120,
+          106
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "sy": 1
+          },
+          {
+            "at": 0.92,
+            "sy": 1
+          },
+          {
+            "at": 0.95,
+            "sy": 0.1
+          },
+          {
+            "at": 1,
+            "sy": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "wave",
+    "pose": "waving",
+    "fps": 12,
+    "durationMs": 900,
+    "loop": true,
+    "use": "Welcome screen (plays twice, then rests)",
+    "frames": [
+      "wave/wave-01.svg",
+      "wave/wave-02.svg",
+      "wave/wave-03.svg",
+      "wave/wave-04.svg",
+      "wave/wave-05.svg",
+      "wave/wave-06.svg",
+      "wave/wave-07.svg",
+      "wave/wave-08.svg",
+      "wave/wave-09.svg",
+      "wave/wave-10.svg",
+      "wave/wave-11.svg"
+    ],
+    "tracks": [
+      {
+        "group": "arm-near",
+        "pivot": [
+          184,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": -8
+          },
+          {
+            "at": 0.5,
+            "rotate": 8
+          },
+          {
+            "at": 1,
+            "rotate": -8
+          }
+        ]
+      },
+      {
+        "group": "fx",
+        "pivot": [
+          230,
+          66
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "opacity": 0.4
+          },
+          {
+            "at": 0.5,
+            "opacity": 1
+          },
+          {
+            "at": 1,
+            "opacity": 0.4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "think",
+    "pose": "thinking",
+    "fps": 12,
+    "durationMs": 2400,
+    "loop": true,
+    "use": "Processing screen while real work runs",
+    "frames": [
+      "think/think-01.svg",
+      "think/think-02.svg",
+      "think/think-03.svg",
+      "think/think-04.svg",
+      "think/think-05.svg",
+      "think/think-06.svg",
+      "think/think-07.svg",
+      "think/think-08.svg",
+      "think/think-09.svg",
+      "think/think-10.svg",
+      "think/think-11.svg",
+      "think/think-12.svg",
+      "think/think-13.svg",
+      "think/think-14.svg",
+      "think/think-15.svg",
+      "think/think-16.svg",
+      "think/think-17.svg",
+      "think/think-18.svg",
+      "think/think-19.svg",
+      "think/think-20.svg",
+      "think/think-21.svg",
+      "think/think-22.svg",
+      "think/think-23.svg",
+      "think/think-24.svg",
+      "think/think-25.svg",
+      "think/think-26.svg",
+      "think/think-27.svg",
+      "think/think-28.svg",
+      "think/think-29.svg"
+    ],
+    "tracks": [
+      {
+        "group": "mascot",
+        "pivot": [
+          120,
+          218
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "ty": 0
+          },
+          {
+            "at": 0.5,
+            "ty": -3
+          },
+          {
+            "at": 1,
+            "ty": 0
+          }
+        ]
+      },
+      {
+        "group": "head",
+        "pivot": [
+          120,
+          186
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.5,
+            "rotate": 2.5
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      },
+      {
+        "group": "fx",
+        "pivot": [
+          212,
+          54
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "opacity": 0.3
+          },
+          {
+            "at": 0.5,
+            "opacity": 1
+          },
+          {
+            "at": 1,
+            "opacity": 0.3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "explain",
+    "pose": "pointing",
+    "fps": 12,
+    "durationMs": 1600,
+    "loop": false,
+    "use": "“Why we ask” (one emphasis beat)",
+    "frames": [
+      "explain/explain-01.svg",
+      "explain/explain-02.svg",
+      "explain/explain-03.svg",
+      "explain/explain-04.svg",
+      "explain/explain-05.svg",
+      "explain/explain-06.svg",
+      "explain/explain-07.svg",
+      "explain/explain-08.svg",
+      "explain/explain-09.svg",
+      "explain/explain-10.svg",
+      "explain/explain-11.svg",
+      "explain/explain-12.svg",
+      "explain/explain-13.svg",
+      "explain/explain-14.svg",
+      "explain/explain-15.svg",
+      "explain/explain-16.svg",
+      "explain/explain-17.svg",
+      "explain/explain-18.svg",
+      "explain/explain-19.svg"
+    ],
+    "tracks": [
+      {
+        "group": "arm-near",
+        "pivot": [
+          184,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.3,
+            "rotate": -6
+          },
+          {
+            "at": 0.6,
+            "rotate": 0
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      },
+      {
+        "group": "fx",
+        "pivot": [
+          236,
+          86
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "opacity": 0
+          },
+          {
+            "at": 0.3,
+            "opacity": 1
+          },
+          {
+            "at": 1,
+            "opacity": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "reassure",
+    "pose": "reassuring",
+    "fps": 12,
+    "durationMs": 1400,
+    "loop": false,
+    "use": "Saved / result screen (one nod)",
+    "frames": [
+      "reassure/reassure-01.svg",
+      "reassure/reassure-02.svg",
+      "reassure/reassure-03.svg",
+      "reassure/reassure-04.svg",
+      "reassure/reassure-05.svg",
+      "reassure/reassure-06.svg",
+      "reassure/reassure-07.svg",
+      "reassure/reassure-08.svg",
+      "reassure/reassure-09.svg",
+      "reassure/reassure-10.svg",
+      "reassure/reassure-11.svg",
+      "reassure/reassure-12.svg",
+      "reassure/reassure-13.svg",
+      "reassure/reassure-14.svg",
+      "reassure/reassure-15.svg",
+      "reassure/reassure-16.svg",
+      "reassure/reassure-17.svg"
+    ],
+    "tracks": [
+      {
+        "group": "head",
+        "pivot": [
+          120,
+          186
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.3,
+            "rotate": -3
+          },
+          {
+            "at": 0.6,
+            "rotate": 2
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "celebrate",
+    "pose": "celebrating",
+    "fps": 12,
+    "durationMs": 800,
+    "loop": false,
+    "use": "Section break (one hop)",
+    "frames": [
+      "celebrate/celebrate-01.svg",
+      "celebrate/celebrate-02.svg",
+      "celebrate/celebrate-03.svg",
+      "celebrate/celebrate-04.svg",
+      "celebrate/celebrate-05.svg",
+      "celebrate/celebrate-06.svg",
+      "celebrate/celebrate-07.svg",
+      "celebrate/celebrate-08.svg",
+      "celebrate/celebrate-09.svg",
+      "celebrate/celebrate-10.svg"
+    ],
+    "tracks": [
+      {
+        "group": "mascot",
+        "pivot": [
+          120,
+          218
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "ty": 0,
+            "sy": 1
+          },
+          {
+            "at": 0.2,
+            "ty": 0,
+            "sy": 0.94
+          },
+          {
+            "at": 0.5,
+            "ty": -12,
+            "sy": 1.03
+          },
+          {
+            "at": 0.8,
+            "ty": 0,
+            "sy": 0.97
+          },
+          {
+            "at": 1,
+            "ty": 0,
+            "sy": 1
+          }
+        ]
+      },
+      {
+        "group": "shadow",
+        "pivot": [
+          120,
+          218
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "sx": 1
+          },
+          {
+            "at": 0.5,
+            "sx": 0.75
+          },
+          {
+            "at": 1,
+            "sx": 1
+          }
+        ]
+      },
+      {
+        "group": "fx",
+        "pivot": [
+          120,
+          30
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "opacity": 0,
+            "sx": 0.8,
+            "sy": 0.8
+          },
+          {
+            "at": 0.5,
+            "opacity": 1,
+            "sx": 1.1,
+            "sy": 1.1
+          },
+          {
+            "at": 1,
+            "opacity": 1,
+            "sx": 1,
+            "sy": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "support",
+    "pose": "supportive",
+    "fps": 12,
+    "durationMs": 2000,
+    "loop": false,
+    "use": "Upload or save failure",
+    "frames": [
+      "support/support-01.svg",
+      "support/support-02.svg",
+      "support/support-03.svg",
+      "support/support-04.svg",
+      "support/support-05.svg",
+      "support/support-06.svg",
+      "support/support-07.svg",
+      "support/support-08.svg",
+      "support/support-09.svg",
+      "support/support-10.svg",
+      "support/support-11.svg",
+      "support/support-12.svg",
+      "support/support-13.svg",
+      "support/support-14.svg",
+      "support/support-15.svg",
+      "support/support-16.svg",
+      "support/support-17.svg",
+      "support/support-18.svg",
+      "support/support-19.svg",
+      "support/support-20.svg",
+      "support/support-21.svg",
+      "support/support-22.svg",
+      "support/support-23.svg",
+      "support/support-24.svg"
+    ],
+    "tracks": [
+      {
+        "group": "arm-near",
+        "pivot": [
+          184,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.4,
+            "rotate": -4
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      },
+      {
+        "group": "head",
+        "pivot": [
+          120,
+          186
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 0
+          },
+          {
+            "at": 0.4,
+            "rotate": 2
+          },
+          {
+            "at": 1,
+            "rotate": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "motion": "walk",
+    "pose": "walking",
+    "fps": 12,
+    "durationMs": 700,
+    "loop": true,
+    "use": "Motion-design source (entrances, empty states)",
+    "frames": [
+      "walk/walk-01.svg",
+      "walk/walk-02.svg",
+      "walk/walk-03.svg",
+      "walk/walk-04.svg",
+      "walk/walk-05.svg",
+      "walk/walk-06.svg",
+      "walk/walk-07.svg",
+      "walk/walk-08.svg"
+    ],
+    "tracks": [
+      {
+        "group": "leg-front",
+        "pivot": [
+          138,
+          180
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": -14
+          },
+          {
+            "at": 0.5,
+            "rotate": 14
+          },
+          {
+            "at": 1,
+            "rotate": -14
+          }
+        ]
+      },
+      {
+        "group": "leg-back",
+        "pivot": [
+          102,
+          180
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 14
+          },
+          {
+            "at": 0.5,
+            "rotate": -14
+          },
+          {
+            "at": 1,
+            "rotate": 14
+          }
+        ]
+      },
+      {
+        "group": "arm-near",
+        "pivot": [
+          184,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": 10
+          },
+          {
+            "at": 0.5,
+            "rotate": -10
+          },
+          {
+            "at": 1,
+            "rotate": 10
+          }
+        ]
+      },
+      {
+        "group": "arm-far",
+        "pivot": [
+          56,
+          128
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "rotate": -10
+          },
+          {
+            "at": 0.5,
+            "rotate": 10
+          },
+          {
+            "at": 1,
+            "rotate": -10
+          }
+        ]
+      },
+      {
+        "group": "mascot",
+        "pivot": [
+          120,
+          218
+        ],
+        "keys": [
+          {
+            "at": 0,
+            "ty": 0
+          },
+          {
+            "at": 0.25,
+            "ty": -3
+          },
+          {
+            "at": 0.5,
+            "ty": 0
+          },
+          {
+            "at": 0.75,
+            "ty": -3
+          },
+          {
+            "at": 1,
+            "ty": 0
+          }
+        ]
+      }
+    ]
+  }
+]
