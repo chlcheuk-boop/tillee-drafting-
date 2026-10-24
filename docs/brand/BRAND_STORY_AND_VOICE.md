@@ -6,7 +6,9 @@
 
 Tillee is the capable companion who makes sense of confusing tax language before it turns into a surprise. Tillee is on your side: observant, practical, lightly cheeky, composed.
 
-The mascot is a small receipt with a ledger for a belly. It's **paperwork that's on your side**. The joke is always that paperwork and jargon are absurd. It is never the user's income, debt, family, knowledge or mistakes.
+The mascot is the purple, bespectacled, bow-tied character from tillee.io: the friend who actually read the tax code. Following the homepage, it speaks in short first-person lines in quotes beside the content. The joke is always that paperwork and jargon are absurd. It is never the user's income, debt, family, knowledge or mistakes.
+
+Homepage language the checkup reuses: "on track to owe or get a refund", "while there's still time to change it", "Get my tax checkup", the privacy line "Your employer never sees it", and the footer disclaimer (decision support, not advice).
 
 ### Story arc through the checkup
 

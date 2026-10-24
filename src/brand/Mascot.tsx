@@ -1,13 +1,9 @@
 /**
- * PROPOSED PLACEHOLDER MASCOT. Not an approved Tillee asset.
- *
- * No existing Tillee mascot or logo files were available to this work, so this
- * is a code-native stand-in that defines the pose set, drawing grammar and
- * integration points. Replace the artwork with the approved character while
- * keeping the `pose` API. See docs/brand/MASCOT.md.
- *
- * Concept: a small, self-possessed receipt ("tally") with a ledger for a belly.
- * Paperwork that's on your side.
+ * Tillee mascot: vector redraw of the character on the tillee.io homepage
+ * (round fuzzy purple body, big round glasses, red bow tie, little arms and
+ * feet). Drawn from a low-resolution screenshot, so proportions are
+ * approximate. Swap in the original asset paths when available and keep the
+ * `pose` API. See docs/brand/MASCOT.md.
  */
 export type MascotPose =
   | 'neutral'
@@ -28,8 +24,8 @@ export const MASCOT_POSES: MascotPose[] = [
   'supportive',
 ];
 
-/** Minimum rendered size; below this the face stops reading. */
-export const MASCOT_MIN_SIZE = 40;
+/** Minimum rendered size; below this the glasses stop reading. */
+export const MASCOT_MIN_SIZE = 32;
 
 type Props = {
   pose?: MascotPose;
@@ -40,180 +36,183 @@ type Props = {
   className?: string;
 };
 
-const INK = 'var(--mascot-ink)';
-const PAPER = 'var(--mascot-paper)';
-const CHEEK = 'var(--mascot-cheek)';
-const LINE = 'var(--mascot-ledger)';
+const C = {
+  body: 'var(--mascot-body)',
+  shade: 'var(--mascot-shade)',
+  light: 'var(--mascot-light)',
+  rim: 'var(--mascot-rim)',
+  lens: 'var(--mascot-lens)',
+  bow: 'var(--mascot-bow)',
+  bowShade: 'var(--mascot-bow-shade)',
+  spark: 'var(--mascot-spark)',
+};
+
+/** Soft "fuzzy" outline: a circle with small regular bumps. */
+function fuzzyCircle(cx: number, cy: number, r: number, bumps = 22, depth = 1.8): string {
+  const pts: string[] = [];
+  const steps = bumps * 6;
+  for (let i = 0; i <= steps; i++) {
+    const a = (i / steps) * Math.PI * 2;
+    const rr = r + Math.sin(a * bumps) * depth;
+    pts.push(`${(cx + Math.cos(a) * rr).toFixed(2)} ${(cy + Math.sin(a) * rr).toFixed(2)}`);
+  }
+  return `M${pts.join(' L')} Z`;
+}
+const BODY = fuzzyCircle(70, 70, 44);
 
 export function Mascot({ pose = 'neutral', size = 96, label, animate = true, className }: Props) {
   const s = Math.max(size, MASCOT_MIN_SIZE);
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true as const };
   return (
     <svg
-      viewBox="0 0 140 150"
+      viewBox="0 0 140 140"
       width={s}
-      height={(s * 150) / 140}
+      height={s}
       className={['mascot', animate ? `mascot--${pose}` : '', className].filter(Boolean).join(' ')}
       focusable="false"
       {...a11y}
     >
       <g className="mascot__body">
+        {/* Feet */}
+        <ellipse cx="54" cy="116" rx="10" ry="6" fill={C.shade} />
+        <ellipse cx="86" cy="116" rx="10" ry="6" fill={C.shade} />
         <Arms pose={pose} />
-        {/* Receipt body: rounded top, torn zigzag bottom */}
-        <path
-          d="M38 22 h64 a16 16 0 0 1 16 16 v82 l-9 8 -9 -8 -9 8 -9 -8 -9 8 -9 -8 -9 8 -9 -8 -9 8 -9 -8 v-82 a16 16 0 0 1 16 -16 z"
-          fill={PAPER}
-          stroke={INK}
-          strokeWidth="4"
-          strokeLinejoin="round"
-        />
-        {/* Ledger lines */}
-        <path d="M44 98 h30 M44 108 h20 M86 98 h10 M86 108 h10" stroke={LINE} strokeWidth="4" strokeLinecap="round" />
-        <circle cx="46" cy="72" r="6" fill={CHEEK} opacity="0.55" />
-        <circle cx="94" cy="72" r="6" fill={CHEEK} opacity="0.55" />
+        <path d={BODY} fill={C.body} />
+        <ellipse cx="54" cy="44" rx="16" ry="10" fill={C.light} opacity="0.55" transform="rotate(-25 54 44)" />
         <Face pose={pose} />
+        <BowTie />
         {pose === 'celebrating' && <Sparkles />}
       </g>
     </svg>
   );
 }
 
-function Face({ pose }: { pose: MascotPose }) {
-  const eye = (cx: number, dx = 0, dy = 0) => (
+function BowTie() {
+  return (
     <g>
-      <ellipse cx={cx} cy={56} rx={6} ry={8} fill={INK} />
-      <circle cx={cx + 2 + dx} cy={53 + dy} r={2} fill={PAPER} />
+      <path d="M70 92 L52 83 Q48 92 52 101 Z" fill={C.bow} />
+      <path d="M70 92 L88 83 Q92 92 88 101 Z" fill={C.bow} />
+      <rect x="64" y="87" width="12" height="10" rx="3" fill={C.bowShade} />
     </g>
   );
-  const happyEye = (cx: number) => (
-    <path d={`M${cx - 6} 58 q6 -8 12 0`} stroke={INK} strokeWidth="4" fill="none" strokeLinecap="round" />
-  );
-  const stroke = { stroke: INK, strokeWidth: 4, fill: 'none', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
+}
 
-  switch (pose) {
-    case 'greeting':
-      return (
-        <g>
-          {eye(58)}
-          {eye(82)}
-          <path d="M60 72 q10 12 20 0 z" fill={INK} stroke={INK} strokeWidth="2" strokeLinejoin="round" />
-        </g>
-      );
-    case 'thinking':
-      return (
-        <g>
-          {eye(58, 1.5, -2)}
-          {eye(82, 1.5, -2)}
-          <path d="M54 42 l9 -2" {...stroke} />
-          <path d="M77 40 l9 1" {...stroke} />
-          <path d="M64 75 h12" {...stroke} />
-        </g>
-      );
-    case 'explaining':
-      return (
-        <g>
-          {eye(58)}
-          {eye(82)}
-          <path d="M76 41 q6 -4 12 0" {...stroke} />
-          <ellipse cx="70" cy="75" rx="5" ry="4" fill={INK} />
-        </g>
-      );
-    case 'reassuring':
-      return (
-        <g>
-          {happyEye(58)}
-          {happyEye(82)}
-          <path d="M62 72 q8 7 16 0" {...stroke} />
-        </g>
-      );
-    case 'celebrating':
-      return (
-        <g>
-          {happyEye(58)}
-          {happyEye(82)}
-          <path d="M58 70 q12 16 24 0 z" fill={INK} stroke={INK} strokeWidth="2" strokeLinejoin="round" />
-        </g>
-      );
-    case 'supportive':
-      return (
-        <g>
-          {eye(58, 0, 1)}
-          {eye(82, -1, 1)}
-          <path d="M51 44 l11 -4" {...stroke} />
-          <path d="M78 40 l11 4" {...stroke} />
-          <path d="M63 76 q7 -3 14 0" {...stroke} />
-        </g>
-      );
-    default:
-      return (
-        <g>
-          {eye(58)}
-          {eye(82)}
-          <path d="M62 72 q8 7 16 0" {...stroke} />
-        </g>
-      );
-  }
+function Face({ pose }: { pose: MascotPose }) {
+  // Pupil offset per pose (where the character is looking).
+  const look: Record<MascotPose, [number, number]> = {
+    neutral: [0, 1],
+    greeting: [0, 0],
+    thinking: [3, -4],
+    explaining: [3, 0],
+    reassuring: [0, 0],
+    celebrating: [0, 0],
+    supportive: [0, 2],
+  };
+  const [dx, dy] = look[pose];
+  const closed = pose === 'reassuring' || pose === 'celebrating';
+  const stroke = { stroke: C.rim, strokeWidth: 3.5, fill: 'none', strokeLinecap: 'round' as const };
+
+  const lens = (cx: number) => (
+    <g>
+      <circle cx={cx} cy={60} r={14} fill={C.lens} stroke={C.rim} strokeWidth="4" />
+      {closed ? (
+        <path d={`M${cx - 6} 62 q6 -7 12 0`} {...stroke} />
+      ) : (
+        <>
+          <circle cx={cx + dx} cy={60 + dy} r={5.5} fill={C.rim} />
+          <circle cx={cx + dx + 2} cy={58 + dy} r={1.8} fill={C.lens} />
+        </>
+      )}
+    </g>
+  );
+
+  const brows: Partial<Record<MascotPose, JSX.Element>> = {
+    thinking: (
+      <g>
+        <path d="M44 40 l12 -2" {...stroke} />
+        <path d="M84 37 l12 3" {...stroke} />
+      </g>
+    ),
+    explaining: <path d="M84 38 q8 -5 14 0" {...stroke} />,
+    supportive: (
+      <g>
+        <path d="M43 42 l13 -5" {...stroke} />
+        <path d="M84 37 l13 5" {...stroke} />
+      </g>
+    ),
+  };
+
+  const mouths: Record<MascotPose, JSX.Element> = {
+    neutral: <path d="M64 79 q6 5 12 0" {...stroke} />,
+    greeting: <path d="M62 77 q8 9 16 0 z" fill={C.rim} stroke={C.rim} strokeWidth="2" strokeLinejoin="round" />,
+    thinking: <path d="M66 80 h9" {...stroke} />,
+    explaining: <ellipse cx="70" cy="80" rx="4" ry="3.5" fill={C.rim} />,
+    reassuring: <path d="M63 78 q7 6 14 0" {...stroke} />,
+    celebrating: <path d="M61 76 q9 11 18 0 z" fill={C.rim} stroke={C.rim} strokeWidth="2" strokeLinejoin="round" />,
+    supportive: <path d="M64 81 q6 -3 12 0" {...stroke} />,
+  };
+
+  return (
+    <g>
+      {lens(52)}
+      {lens(88)}
+      {/* Bridge */}
+      <path d="M66 60 q4 -3 8 0" stroke={C.rim} strokeWidth="4" fill="none" strokeLinecap="round" />
+      {brows[pose]}
+      {mouths[pose]}
+    </g>
+  );
 }
 
 function Arms({ pose }: { pose: MascotPose }) {
-  const arm = { stroke: 'var(--mascot-ink)', strokeWidth: 4, fill: 'none', strokeLinecap: 'round' as const };
-  const hand = (cx: number, cy: number) => <circle cx={cx} cy={cy} r={6} fill={PAPER} stroke={INK} strokeWidth="4" />;
+  const arm = { stroke: C.body, strokeWidth: 11, fill: 'none', strokeLinecap: 'round' as const };
+  const down = (side: 'l' | 'r') =>
+    side === 'l' ? <path d="M32 82 q-8 8 -6 18" {...arm} /> : <path d="M108 82 q8 8 6 18" {...arm} />;
   switch (pose) {
     case 'greeting':
       return (
         <g>
-          <path d="M22 80 q-10 8 -8 20" {...arm} />
-          {hand(14, 102)}
+          {down('r')}
           <g className="mascot__wave">
-            <path d="M118 74 q14 -8 14 -28" {...arm} />
-            {hand(132, 42)}
+            <path d="M32 74 q-14 -6 -14 -26" {...arm} />
           </g>
         </g>
       );
     case 'thinking':
       return (
         <g>
-          <path d="M22 80 q-10 8 -8 20" {...arm} />
-          {hand(14, 102)}
-          <path d="M118 84 q8 6 -2 0" {...arm} />
-          <circle className="mascot__dot" cx="128" cy="30" r="3" fill={INK} />
-          <circle className="mascot__dot" cx="134" cy="18" r="2.5" fill={INK} />
+          {down('l')}
+          <path d="M106 86 q4 -10 -10 -10" {...arm} />
+          <circle className="mascot__dot" cx="118" cy="30" r="3.5" fill={C.shade} />
+          <circle className="mascot__dot" cx="128" cy="18" r="2.5" fill={C.shade} />
         </g>
       );
     case 'explaining':
       return (
         <g>
-          <path d="M22 80 q-10 8 -8 20" {...arm} />
-          {hand(14, 102)}
-          <path d="M118 76 q10 -2 16 -10" {...arm} />
-          {hand(134, 64)}
+          {down('l')}
+          <path d="M108 78 q12 -2 22 -12" {...arm} />
         </g>
       );
     case 'celebrating':
       return (
         <g>
-          <path d="M22 72 q-12 -6 -12 -28" {...arm} />
-          {hand(10, 40)}
-          <path d="M118 72 q12 -6 12 -28" {...arm} />
-          {hand(130, 40)}
+          <path d="M32 72 q-14 -8 -12 -30" {...arm} />
+          <path d="M108 72 q14 -8 12 -30" {...arm} />
         </g>
       );
     case 'supportive':
       return (
         <g>
-          <path d="M22 80 q-10 8 -8 20" {...arm} />
-          {hand(14, 102)}
-          <path d="M118 86 q12 4 16 14" {...arm} />
-          {hand(134, 104)}
+          {down('l')}
+          <path d="M108 84 q14 2 20 14" {...arm} />
         </g>
       );
     default:
       return (
         <g>
-          <path d="M22 80 q-10 8 -8 20" {...arm} />
-          {hand(14, 102)}
-          <path d="M118 80 q10 8 8 20" {...arm} />
-          {hand(126, 102)}
+          {down('l')}
+          {down('r')}
         </g>
       );
   }
@@ -223,16 +222,24 @@ function Sparkles() {
   const star = (x: number, y: number, r: number) => (
     <path
       d={`M${x} ${y - r} L${x + r * 0.3} ${y - r * 0.3} L${x + r} ${y} L${x + r * 0.3} ${y + r * 0.3} L${x} ${y + r} L${x - r * 0.3} ${y + r * 0.3} L${x - r} ${y} L${x - r * 0.3} ${y - r * 0.3} Z`}
-      fill="var(--mascot-cheek)"
-      stroke={INK}
-      strokeWidth="2"
-      strokeLinejoin="round"
+      fill={C.spark}
     />
   );
   return (
     <g className="mascot__sparkles">
-      {star(28, 16, 7)}
-      {star(114, 10, 5)}
+      {star(16, 18, 7)}
+      {star(124, 14, 5)}
     </g>
+  );
+}
+
+/** Text wordmark approximating the tillee.io logo. Replace with the logo SVG. */
+export function Wordmark({ className }: { className?: string }) {
+  return (
+    <span className={['wordmark', className].filter(Boolean).join(' ')} aria-label="Tillee">
+      <span aria-hidden="true">
+        Tillee<span className="wordmark__dot">.</span>
+      </span>
+    </span>
   );
 }

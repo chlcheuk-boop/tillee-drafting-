@@ -6,8 +6,8 @@
 |---|---|---|
 | Implementation brief (pasted in conversation) | ✅ | Governs this build |
 | Tillee app repo, `AGENTS.md`, `DESIGN.md`, `Tillee_Brand_Guidelines.md`, `DESIGN_LOG_ARCHIVE.md`, `docs/brand_guidelines/components/` | ❌ Only an empty repo (`tillee-drafting-`) was accessible | All tokens, components and rules here are **proposed** stand-ins |
-| `/style` living showcase | ❌ | Built an equivalent at `#/style` for review |
-| Mascot, logo, fonts, icon package | ❌ | Code-native **placeholder** mascot and icon set |
+| `/style` living showcase | ❌ | Built an equivalent at `#style` for review |
+| Mascot, logo, fonts, icon package | ⚠️ Only a screenshot of the tillee.io homepage (shared mid-session) | Colors sampled from it and nudged for contrast; mascot redrawn as a vector; wordmark approximated with Fraunces; body set in Inter. Original files still needed |
 | Live app at app.tillee.io, demo profile | ❌ The session's network can't reach external sites, and no credentials were used | **No live walkthrough was done** |
 | Real onboarding schema, field names, branching, save, upload, estimate APIs | ❌ | Fixture config and fixture services behind interfaces |
 | Tillee background PDFs, Lemonade screenshots, Lemonade PDF | ❌ Not attached to this session | Lemonade patterns applied from the brief's written observations (§5) only |
@@ -35,7 +35,7 @@ Classify each real question as **prefillable**, **needs confirmation**, or **req
 3. **Payroll import.** Need to know which fields Finch (or the real source) actually provides, their as-of date, and their tax year.
 4. **Document processing.** Need the real statuses, allowed formats and size limits, and the extraction response. Don't show extraction confidence unless the service provides it.
 5. **Estimate.** Need the real response shape. The `demo` variant must be removed, and the result copy must match the real calculation contract.
-6. **Privacy copy.** The welcome screen shows a visible placeholder. The claim that HR can't see employee answers is unverified and is not stated anywhere.
+6. **Privacy copy.** The welcome screen uses the homepage's published line ("Your employer never sees your answers…"). It's published marketing copy, but it still has to be checked against the app's real data-access permissions before launch.
 7. **Next-step routing.** "Go to my dashboard" is a disabled placeholder.
 8. **Logout clearing.** In-memory state must be cleared using the app's existing logout pattern.
 9. **Analytics.** None added. Any future events must exclude answer values and documents.

@@ -1,4 +1,4 @@
-import { MASCOT_MIN_SIZE, MASCOT_POSES, Mascot, type MascotPose } from '../brand/Mascot';
+import { MASCOT_MIN_SIZE, MASCOT_POSES, Mascot, Wordmark, type MascotPose } from '../brand/Mascot';
 import { Icon } from '../brand/Icon';
 import { CONTRAST_PAIRS, contrastRatio } from '../brand/contrast';
 
@@ -17,33 +17,39 @@ const POSE_USE: Record<MascotPose, string> = {
 };
 
 const TOKENS = [
-  ['canvas', '#f6f4ef'],
+  ['canvas (cream)', '#fff9f2'],
+  ['hero lavender', '#f4ecfd'],
   ['surface', '#ffffff'],
-  ['ink', '#1b2430'],
-  ['ink-muted', '#4a5565'],
-  ['primary', '#0b6e5b'],
-  ['primary-tint', '#e3f2ee'],
-  ['accent', '#ffb23e'],
-  ['danger', '#b42318'],
-  ['mascot-paper', '#fff6e0'],
-  ['mascot-ledger', '#9ccfc3'],
+  ['ink (plum)', '#2a2340'],
+  ['ink-muted', '#5d566e'],
+  ['primary (violet)', '#6941d9'],
+  ['primary-tint', '#f3edff'],
+  ['success', '#1d7348'],
+  ['amber', '#7a4b00'],
+  ['danger', '#a3203a'],
+  ['mascot-body', '#7a52e6'],
+  ['mascot-bow', '#e0303a'],
 ];
 
 export function StyleShowcase() {
   return (
     <div className="showcase">
       <p>
-        <a href="#/">← Back to checkup</a>
+        <a href="#checkup">← Back to checkup</a>
       </p>
-      <h1>Checkup components & brand proposal</h1>
+      <p>
+        <Wordmark />
+      </p>
+      <h1>Checkup components & brand</h1>
       <div className="proposal-banner" role="note">
-        <strong>Proposal, not approved rules.</strong> Tillee&apos;s real tokens, mascot and icon assets were not available. Everything
-        below is a reviewable stand-in pending founder approval and reconciliation with <code>DESIGN.md</code> and{' '}
-        <code>Tillee_Brand_Guidelines.md</code>.
+        <strong>Derived from the tillee.io homepage, not yet from the design files.</strong> Colours were sampled from a homepage
+        screenshot and nudged for WCAG AA contrast; the mascot is a vector redraw of the homepage character and the wordmark is a
+        font approximation. Reconcile with <code>DESIGN.md</code>, <code>Tillee_Brand_Guidelines.md</code> and the original asset
+        files.
       </div>
 
       <section>
-        <h2>Mascot pose sheet (placeholder artwork)</h2>
+        <h2>Mascot pose sheet (redraw of the homepage character)</h2>
         <div className="pose-grid">
           {MASCOT_POSES.map((p) => (
             <div className="pose-card" key={p}>
@@ -55,10 +61,10 @@ export function StyleShowcase() {
         </div>
         <h3>Minimum size ({MASCOT_MIN_SIZE}px) and small-size check</h3>
         <div style={{ display: 'flex', gap: 16, alignItems: 'end' }}>
-          <Mascot size={40} animate={false} />
+          <Mascot size={32} animate={false} />
           <Mascot size={64} animate={false} />
           <Mascot size={96} animate={false} />
-          <span style={{ background: '#1b2430', padding: 8, borderRadius: 12 }}>
+          <span style={{ background: '#2a2340', padding: 8, borderRadius: 12 }}>
             <Mascot size={64} animate={false} />
           </span>
         </div>

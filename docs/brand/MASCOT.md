@@ -1,37 +1,37 @@
-# Mascot spec (PROPOSED PLACEHOLDER)
+# Mascot spec
 
-**Asset status: temporary.** No existing Tillee mascot or logo files were available, so `src/brand/Mascot.tsx` is a code-native stand-in. The first step with real assets is to inspect the current character (silhouette, proportions, colors, small-size behavior) and redraw these poses in its style. Don't adopt the receipt character just because it exists here. The species was not chosen from the demo account name.
+**Asset status: redraw, pending the original files.** The character comes from the tillee.io homepage: a round, fuzzy purple creature with big round glasses, a red bow tie, small arms and feet, often waving beside a quoted line. `src/brand/Mascot.tsx` is a vector redraw made from a low-resolution homepage screenshot. Its proportions are approximate. Swap in the original artwork when available, and keep the `pose` API.
 
-## Character
+## Drawing grammar
 
-- **Concept:** a small receipt with a torn zigzag hem, a ledger-line belly, big oval eyes, and warm cheeks.
-- **Drawing grammar:** 4px ink stroke, round joins and caps; paper body `--mascot-paper`; ink `--mascot-ink`; cheeks and sparkles `--mascot-cheek`; ledger `--mascot-ledger`; line-and-circle arms. Expression changes only in the eyes, brows, mouth and arms. The body never changes shape.
-- **viewBox:** 140×150.
+- **Body:** a fuzzy circle (`--mascot-body`) with a soft top-left highlight and darker feet (`--mascot-shade`).
+- **Glasses:** two white lenses with plum rims (`--mascot-rim`) and a bridge. Expressions live in the pupils, the brows above the rims, the mouth and the arms. The body never changes shape.
+- **Bow tie:** `--mascot-bow` with a darker knot. It's the character's one warm accent; nothing else in the UI uses that red.
+- **viewBox:** 140×140.
 
 ## Poses
 
 | Pose | Use | Never |
 |---|---|---|
-| `neutral` | Desktop aside on question screens; header mark stand-in | Speech bubble repeating the question |
+| `neutral` | Desktop progress column beside questions | Speech bubble repeating the question |
 | `greeting` | Welcome (one wave, about 1.6s, once) | Looping |
 | `thinking` | Real processing only | Pretending to calculate or review |
-| `explaining` | "Why we ask" and term explanations | Wit before the reason |
+| `explaining` | "Why we ask" with a quoted line, as on the homepage | Wit before the reason |
 | `reassuring` | Saved and completion; calm result, including when money may be owed | Celebrating a refund amount |
 | `celebrating` | Section breaks (acknowledging effort) | Results, owed amounts, more withholding |
 | `supportive` | Upload or save failure with retry | Shocked, blaming or laughing |
 
 ## Usage
 
-- **Size:** minimum 40px (`MASCOT_MIN_SIZE`, which the component enforces). Typical sizes are 40 (header), 48 (inline explain), 88–120 (hero or aside).
-- **Clear space:** at least 25% of its rendered width on every side.
-- **Backgrounds:** canvas, surface, or a dark ink background (see the showcase). Don't place it on busy illustration or on the primary-colored fill.
-- **Hierarchy:** never larger than the screen's heading block, and never between the prompt and its answers. On mobile question screens it's hidden.
-- **Accessibility:** decorative by default (`aria-hidden`). Pass `label` only if it conveys meaning not given in text, which this flow never needs.
-- **Motion:** at most one gesture per appearance (wave, hop) or a subtle bob while thinking. Everything collapses under `prefers-reduced-motion`. Motion never delays navigation.
+- **Homepage pattern:** the mascot sits small, beside a short line in quotes in muted text. It speaks in the first person ("I'll do the typing where I can…"). The checkup reuses this on the welcome screen and in "Why we ask".
+- **Size:** minimum 32px (enforced). Typical sizes are 56–72 inline and 96 on the hero or aside.
+- **Clear space:** at least 25% of its width on every side.
+- **Hierarchy:** never larger than the heading block, and never between a prompt and its answers. On mobile question screens it's hidden.
+- **Accessibility:** decorative (`aria-hidden`). Anything it "says" is real text beside it.
+- **Motion:** at most one gesture per appearance. Everything collapses under `prefers-reduced-motion`. Motion never delays navigation.
 
-## Final illustration work needed
+## Still needed
 
-1. Reconcile with the existing mascot or logo, or get founder approval for a new direction.
-2. Have an illustrator draw the 7 poses (SVG, same viewBox), plus a wordmark lockup.
-3. Export a static set: `tillee-mascot-{pose}.svg` and PNGs at @1x/@2x at 48, 96 and 192px.
-4. Optionally add Lottie or CSS motion, with static fallbacks.
+1. The original mascot and logo files (SVG preferred), to replace the redraw and the font-approximated wordmark.
+2. Illustrator passes on the seven poses in the original style.
+3. Static exports: `tillee-mascot-{pose}.svg` plus @1x/@2x PNGs at 48, 96 and 192px.

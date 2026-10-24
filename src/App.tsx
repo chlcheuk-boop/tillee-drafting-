@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Mascot } from './brand/Mascot';
 import { StyleShowcase } from './pages/StyleShowcase';
 import {
   completionCount,
@@ -22,6 +21,7 @@ import {
   WelcomeScreen,
 } from './checkup/components/Screens';
 import { onboardingConfig } from './checkup/config/onboarding';
+import { ProgressAside, WelcomeAside } from './checkup/components/Aside';
 import { useCheckup } from './checkup/useCheckup';
 
 // FIXTURE services. Swap for real adapters when wiring into the Tillee app.
@@ -43,7 +43,9 @@ function Checkup() {
       saveStatus={c.saveStatus}
       onRetrySave={() => void c.retrySave()}
       onBack={canBack ? c.back : undefined}
-      aside={v.kind === 'question' ? <Mascot pose="neutral" size={120} animate={false} /> : undefined}
+      aside={
+        v.kind === 'welcome' ? <WelcomeAside c={c} /> : v.kind === 'question' || v.kind === 'intro' ? <ProgressAside progress={c.progress} /> : undefined
+      }
     >
       {v.kind === 'loading' && <p role="status">Loading…</p>}
       {v.kind === 'welcome' && <WelcomeScreen c={c} />}
@@ -114,7 +116,7 @@ function PrototypePanel({ onRemount }: { onRemount: (reset: boolean) => void }) 
           <button type="button" className="btn btn--secondary btn--small" onClick={() => onRemount(true)}>
             Reset everything
           </button>
-          <a className="btn btn--secondary btn--small" href="#/style">
+          <a className="btn btn--secondary btn--small" href="#style">
             Open style showcase
           </a>
         </div>
@@ -141,7 +143,7 @@ export function App() {
     window.addEventListener('hashchange', on);
     return () => window.removeEventListener('hashchange', on);
   }, []);
-  if (route === '#/style') return <StyleShowcase />;
+  if (route === '#style') return <StyleShowcase />;
   return (
     <>
       <Checkup key={mountKey} />

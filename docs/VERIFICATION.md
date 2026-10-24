@@ -5,7 +5,7 @@ All runs used fixture services and synthetic data, in Chromium 390×844 unless n
 ## Automated
 
 - `npm run typecheck`: clean (strict TS)
-- `npm test`: 30 passing
+- `npm test`: 40 passing
   - Config integrity: rules, validators and copy keys exist; IDs and option values are unique
   - Branching: simple path skips advanced questions; follow-ups appear; changing a controlling answer removes its dependents from the submission and restores them in the draft if changed back; edits surface newly required follow-ups; imports are used only for the selected source and matching tax year; an unavailable payroll import falls back to manual entry; upload fallbacks wait for the upload to settle
   - Answer states: blank, zero and unknown stay distinct; unknown is submitted as a status, never as 0; currency parsing keeps cents and rejects bad formats; dates must exist and fall in the tax year
@@ -14,7 +14,7 @@ All runs used fixture services and synthetic data, in Chromium 390×844 unless n
   - Progress: empty sections are omitted
   - Resume: drops answers for removed questions and answers with changed shapes; never resumes past a newly required question
   - SaveTracker: an older response can't mark newer edits saved; a failure is never shown as saved; retry works
-  - Contrast: 12 proposed token pairs meet WCAG AA (4.5:1 text, 3:1 UI)
+  - Contrast: 22 light and dark token pairs meet WCAG AA (4.5:1 text, 3:1 UI)
 - `npm run build`: succeeds
 
 ## Browser scenarios (Playwright)
@@ -37,6 +37,18 @@ All runs used fixture services and synthetic data, in Chromium 390×844 unless n
 | Widths 320 / 768 / 1440 | ✅ no horizontal overflow; desktop keeps the form about 640px wide with the mascot alongside |
 | 200% root font size | ✅ no horizontal overflow |
 | Keyboard only | ✅ Enter starts; focus moves to the question heading; Tab/Space/arrow keys select; Enter submits |
+
+## Design and copy passes
+
+- **Apple design review** (the skill's reference pages weren't installed, so findings were made against the skill's distilled rules and labelled as judgment, without HIG quotes). Fixed:
+  - Added a dark appearance that follows the system setting, with every pair checked to AA (the contrast tests now cover 22 pairs)
+  - Body text raised to 17px
+  - Removed the focus ring that appeared on headings focused by code
+  - Moved the privacy line above the call to action
+  - Stopped echoing bare "Yes"/"No" answers without context
+  - Desktop now uses a two-column layout (welcome summary card; live section checklist beside questions) with no sticky footer, and the background gradient covers the full height
+- **Clean user-facing text:** hidden-Unicode inspection found 0 suspicious characters before and after. Prose rewritten for directness, and one factual fix: the "why we ask" line for other income claimed no tax is withheld, which is wrong for a second job.
+- Re-ran both browser scripts after these changes: all scenarios pass, with no horizontal overflow at 320/768/1024/1440 and no console errors.
 
 ## Not yet verified
 

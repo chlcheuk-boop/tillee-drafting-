@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Icon } from '../../brand/Icon';
-import { Mascot } from '../../brand/Mascot';
+import { Wordmark } from '../../brand/Mascot';
 import { t } from '../content/en';
 import type { SectionState } from '../engine/flow';
 import type { SaveStatus } from '../engine/saveTracker';
@@ -28,8 +28,7 @@ export function CheckupShell({ children, aside, progress, saveStatus, onRetrySav
             </button>
           ) : (
             <span className="topbar__brand">
-              <Mascot pose="neutral" size={40} animate={false} />
-              {t('shell.brand')}
+              <Wordmark />
             </span>
           )}
           <span className="topbar__spacer" />

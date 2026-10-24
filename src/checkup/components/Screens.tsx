@@ -17,7 +17,7 @@ export function WelcomeScreen({ c }: { c: CheckupController }) {
   const h = useFocusHeading('welcome');
   return (
     <section className="hero step">
-      <Mascot pose="greeting" size={112} />
+      <p className="eyebrow">{t('welcome.eyebrow', { taxYear: c.config.taxYear })}</p>
       <h1 className="q-heading" ref={h} tabIndex={-1}>
         {t('welcome.title')}
       </h1>
@@ -29,12 +29,16 @@ export function WelcomeScreen({ c }: { c: CheckupController }) {
         <li>{t('welcome.list.2')}</li>
         <li>{t('welcome.list.3')}</li>
       </ul>
+      <p className="mascot-quote mascot-quote--compact">
+        <Mascot pose="greeting" size={72} />
+        <span className="mascot-quote__text">“{t('welcome.mascotLine')}”</span>
+      </p>
+      <p className="fine-print">{t('welcome.privacyNote')}</p>
       <div className="footer" style={{ width: '100%' }}>
         <button type="button" className="btn btn--primary" onClick={c.start}>
           {c.canResume ? t('welcome.resume') : t('welcome.cta')}
         </button>
       </div>
-      <p className="fine-print">{t('welcome.privacyNote')}</p>
     </section>
   );
 }
@@ -44,7 +48,7 @@ export function SectionIntroScreen({ c, sectionId }: { c: CheckupController; sec
   const h = useFocusHeading(sectionId);
   return (
     <section className="hero step">
-      <Mascot pose="celebrating" size={88} />
+      <Mascot pose="celebrating" size={96} />
       <h1 className="q-heading" ref={h} tabIndex={-1}>
         {t(section.introKey!)}
       </h1>
@@ -233,9 +237,10 @@ export function ResultScreen({ c }: { c: CheckupController }) {
           </>
         )}
       </div>
+      <p className="fine-print">{t('result.disclaimer')}</p>
       <div className="footer">
         {/* PLACEHOLDER: route to the existing dashboard / next-step flow. */}
-        <a className="btn btn--primary" href="#/" onClick={(e) => e.preventDefault()} aria-disabled="true">
+        <a className="btn btn--primary" href="#checkup" onClick={(e) => e.preventDefault()} aria-disabled="true">
           {t('result.next')}
         </a>
         <button type="button" className="btn btn--ghost" onClick={c.goToReview}>

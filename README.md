@@ -4,14 +4,17 @@ A working, reviewable employee onboarding flow that asks one question at a time,
 
 > **Status: standalone prototype on fixtures.** The Tillee app repository, `DESIGN.md`, brand guidelines, `/style`, assets, real question schema and APIs were **not available** to this work. Only this empty repository was accessible. Everything is built to be lifted into the real app, and every integration point is behind an interface. See [`docs/AUDIT.md`](docs/AUDIT.md) for exactly what was and wasn't verified.
 
+**Hosted prototype:** https://claude.ai/artifact/1kbGAEUJeadERp9hhPDvEu (private until shared from the page's Share menu). Add `#style` to the URL for the brand and component showcase.
+
 ## Run it
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173 (checkup); #/style for the showcase
+npm run dev        # http://localhost:5173 (checkup); #style for the showcase
 npm test           # engine, branching, persistence and contrast tests
 npm run typecheck
 npm run build
+node scripts/build-artifact.mjs   # single-file HTML for the hosted prototype
 ```
 
 Use the **Prototype controls** panel at the bottom of the page to switch fixture scenarios: payroll unavailable or updated (conflict), draft-save failure, final-save failure, upload failure, estimate states (unavailable, processing, missing inputs, error, labelled demo), latency, and "simulate refresh" for resume.
@@ -32,9 +35,9 @@ Uploads: a file named like `synthetic-paystub.pdf` simulates a successful extrac
 | Fixture services | `src/checkup/adapters/fixtures.ts` | **Fixture**: never ship |
 | Flow controller hook | `src/checkup/useCheckup.ts` | Implemented |
 | Renderers and screens | `src/checkup/components/` | Implemented |
-| Mascot (7 poses) and icons | `src/brand/` | **Proposed placeholder artwork** |
-| Tokens and styles | `src/styles.css` | **Proposed** stand-in tokens |
-| Style showcase | `src/pages/StyleShowcase.tsx` (`#/style`) | Implemented |
+| Mascot (7 poses), wordmark, icons | `src/brand/` | Redrawn from the tillee.io homepage; originals still needed |
+| Tokens and styles (light + dark) | `src/styles.css` | Sampled from the homepage, adjusted for WCAG AA |
+| Style showcase | `src/pages/StyleShowcase.tsx` (`#style`) | Implemented |
 
 ## Docs
 

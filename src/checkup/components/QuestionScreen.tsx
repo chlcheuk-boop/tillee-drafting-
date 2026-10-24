@@ -25,7 +25,9 @@ export function QuestionScreen({ c, id }: { c: CheckupController; id: string }) 
 
   const idx = c.path.findIndex((x) => x.id === id);
   const prev = idx > 0 ? c.path[idx - 1] : undefined;
-  const prevAnswer = prev && prev.sectionId === q.sectionId ? c.answers[prev.id] : undefined;
+  // A bare "Yes"/"No" chip has no meaning out of context, so only richer answers are echoed.
+  const prevIsBareChoice = prev?.type === 'singleChoice' && prev.layout === 'buttons';
+  const prevAnswer = prev && prev.sectionId === q.sectionId && !prevIsBareChoice ? c.answers[prev.id] : undefined;
 
   const source = c.answers.payInfoSource?.value;
   const isManualFallback =
@@ -117,8 +119,8 @@ export function QuestionScreen({ c, id }: { c: CheckupController; id: string }) 
             <Icon name="info" size={18} /> {t('common.whyWeAsk')}
           </summary>
           <div className="why__body">
-            <Mascot pose="explaining" size={48} animate={false} />
-            <p>{t(q.whyKey, tax)}</p>
+            <Mascot pose="explaining" size={56} animate={false} />
+            <p>“{t(q.whyKey, tax)}”</p>
           </div>
         </details>
       )}
